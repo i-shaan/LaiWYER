@@ -6,7 +6,7 @@ import "../styles/landing.css"
 
 const Info = () => {
   return (
-    <div className="relative grid place-content-center bg-cover h-[100vh] w-[100vw] bg-center bg-gradient-to-b from-violet-900 to-zinc-900">
+    <div className="relative grid place-content-center bg-cover h-[100vh] w-[100vw] bg-center bg-gradient-to-b from-white to-black">
         {/* <Image src={bg} className="relative"/> */}
         <div className="text-center h-[100vh] grid place-content-center">
             <h1 className="text-3xl md:text-5xl font-bold text-gradient">Your Virtual Legal Assistant, Anytime, Anywhere</h1>
