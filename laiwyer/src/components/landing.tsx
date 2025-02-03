@@ -1,12 +1,14 @@
-import React from 'react'
-import Info from './info'
+import React from "react";
+import Info from "./info";
+import Navbar from "./navbar";
 
 const Landing = () => {
   return (
-    <div>
+    <>
+      <Navbar />
       <Info />
-    </div>
-  )
-}
+    </>
+  );
+};
 
-export default Landing
+export default Landing;
