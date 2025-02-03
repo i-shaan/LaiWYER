@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'; // Ensure this is from next/navigation
 
 const LandingInput = () => {
+   const router = useRouter();
    const placeholders = [
      'What is the statute of limitations?',
      'Define mens rea in criminal law',
@@ -18,6 +20,7 @@ const LandingInput = () => {
    const [placeholderText, setPlaceholderText] = useState('');
    const [placeholderIndex, setPlaceholderIndex] = useState(0);
    const [isDeleting, setIsDeleting] = useState(false);
+   const [input, setInput] = useState('');
 
    useEffect(() => {
      const current = placeholders[placeholderIndex];
@@ -48,13 +51,29 @@ const LandingInput = () => {
      return () => clearTimeout(timer);
    }, [placeholderText, placeholderIndex, isDeleting]);
 
+   const handleClick = () => {
+     // Robust method for pushing with query
+     if (input.trim()) {
+       router.push(`/search?query=${encodeURIComponent(input.trim())}`);
+     }
+   }
+
+   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+     if (e.key === 'Enter' && input.trim()) {
+       router.push(`/search?query=${encodeURIComponent(input.trim())}`);
+     }
+   }
+
    return (
-     <div className="relative w-full ">
+     <div className="relative w-full">
        <div className="relative">
          <input
             type="text"
             className="w-full text-black pr-10 pl-3 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-           placeholder={placeholderText}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder={placeholderText}
          />
          <button
             className="absolute right-1 top-1/2 transform -translate-y-1/2 
@@ -63,6 +82,7 @@ const LandingInput = () => {
             hover:from-purple-500 hover:to-purple-700 
             transition-all duration-300 
             shadow-md hover:shadow-lg"
+            onClick={handleClick}
          >
            Search
          </button>
