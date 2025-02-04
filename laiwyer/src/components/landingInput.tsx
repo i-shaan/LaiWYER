@@ -68,9 +68,9 @@ const LandingInput = () => {
    };
 
    return (
-     <div className="relative h-screen flex flex-col items-center justify-center">
+     <div className="relative h-screen flex flex-col items-center justify-center mx-4">
      
-       <div className="relative grid place-content-center bg-cover h-[100vh] w-[100vw] bg-black">
+       <div className="relative grid place-content-center bg-cover h-[100vh] w-[100vw] bg-gradient-to-br from-slate-900 to-neutral-900">
          <div className="text-center h-[100vh] grid place-content-center ">
 
            <div className="mx-[10]  ">

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   return (
-    <nav className="w-full flex items-center justify-between px-6 py-4 bg-black backdrop-blur-md z-50">
+    <nav className="w-full flex items-center justify-between px-6 py-4 bg-transparent absolute top-0 backdrop-blur-md z-50">
       {/* Logo */}
       <div className="text-xl font-bold text-white">
         <div className="text-offWhite">lAIwyer</div>

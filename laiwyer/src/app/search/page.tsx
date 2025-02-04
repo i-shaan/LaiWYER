@@ -2,8 +2,35 @@
  
 import { useSearchParams } from 'next/navigation'
 import { useState, useEffect, useRef} from "react";
+import { BsChatSquareDots } from "react-icons/bs";
+import { SiAmazonec2 } from "react-icons/si";
+
+
 
 export default function Home() {
+  const examples = [
+    {
+      content: "What is the statute of limitations?",
+    },
+    {
+      content: "What are intellectual property rights?",
+    },
+    {
+      content: "Rights of Miranda warning explained",
+    },
+  ];
+
+  const Capabalities = [
+{
+  content : "Scan & Analyze Documents"
+},
+{
+  content : "Voice-Powered Legal Queries"
+},
+{
+  content : "Analyzes cases from 2015-2024"
+}
+  ]
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
   
@@ -106,7 +133,7 @@ export default function Home() {
 
   return (
     <main 
-      className="min-h-screen bg-cover bg-center flex items-center justify-center p-5 bg-fixed"
+      className="min-h-screen bg-cover bg-center flex items-center justify-center p-5 bg-fixed bg-black text-white"
       style={{ backgroundImage: `url('/bg.jpg')` }}
     >
       <div className="w-[95vw] md:w-[80vw] h-[600px]  rounded-xl flex flex-col backdrop-blur-lg">
@@ -156,8 +183,29 @@ export default function Home() {
               </div>
             </div>
           )}
-        </div> : <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#161218] rounded-3xl">
-          
+        </div> : <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#161218] rounded-3xl ">
+          <div className="flex justify-center items-center h-[100%] md:space-x-4">
+            <div className="lg:w-[22vw] grid place-content-center rounded-2xl bg-white bg-opacity-5  px-4 py-6 border border-white">
+            <BsChatSquareDots className="mx-auto text-2xl"/>
+              <h1 className="text-xl text-center mb-4 mt-2">Example</h1>
+              <div className="text-sm text-left mx-auto space-y-2">
+                {examples.map((example, index) => (
+                  <div key={index} className=" bg-white bg-opacity-10 rounded-xl p-4 border-white mx-auto">{example.content}</div>
+                ))}
+              </div>
+            </div>
+            <div className="lg:w-[22vw] place-content-center rounded-2xl bg-white bg-opacity-5  px-4 py-6 border border-white hidden md:grid">
+            <SiAmazonec2 className="mx-auto text-2xl"/>
+
+              <h1 className="text-xl text-center mb-4 mt-2">Capabalities</h1>
+              <div className="text-sm text-left mx-auto space-y-2">
+                {Capabalities.map((example, index) => (
+                  <div key={index} className=" bg-white bg-opacity-10 rounded-xl p-4 border-white mx-auto">{example.content}</div>
+                ))}
+                </div>
+            </div>
+
+          </div>
           </div>}
 
         <div className="p-4 bg-black/50 rounded-b-xl">
