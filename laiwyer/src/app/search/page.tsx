@@ -4,7 +4,9 @@ import { useSearchParams } from 'next/navigation'
 import { useState, useEffect, useRef} from "react";
 
 export default function Home() {
-    const { query } = useSearchParams();
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query");
+  
   
   const [messages, setMessages] = useState<Array<{type: 'user' | 'bot', content: string}>>([]);
   const [input, setInput] = useState("");
@@ -34,9 +36,22 @@ export default function Home() {
     }
   };
 
+  
+  // New useEffect to handle speaking after bot message is added
+  useEffect(() => {
+    if (messages.length > 0) {
+      const lastMessage = messages[messages.length - 1];
+      if (lastMessage.type === 'bot') {
+        speakMessage(lastMessage.content);
+      }
+    }
+  }, [messages]); // Runs whenever messages update
+  
+
   useEffect(() => {
     if (query) {
-        console.log(query)
+      setInput(query);
+      sendMessage();
     }
     if (typingMessage) {
       let currentIndex = 0;
@@ -93,12 +108,10 @@ export default function Home() {
       className="min-h-screen bg-cover bg-center flex items-center justify-center p-5 bg-fixed"
       style={{ backgroundImage: `url('/bg.jpg')` }}
     >
-      <div className="w-full max-w-md h-[600px] bg-black/80 rounded-xl flex flex-col backdrop-blur-lg">
-    
-        
-        <div 
+      <div className="w-[95vw] md:w-[80vw] h-[600px]  rounded-xl flex flex-col backdrop-blur-lg">
+        { messages.length > 0 ? <div  
           ref={chatContainerRef}
-          className="flex-1 overflow-y-auto p-4 space-y-3 bg-black/70 rounded-b-xl"
+          className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#161218] rounded-3xl"
         >
           {messages.map((message, index) => (
             <div
@@ -114,6 +127,7 @@ export default function Home() {
               >
                 {message.type === 'bot' && (
                   <div className="flex items-center gap-2 mb-2">
+                    
                     <span className="text-xl">⚖️</span>
                     <button 
                       onClick={() => speakMessage(message.content)}
@@ -123,6 +137,7 @@ export default function Home() {
                     </button>
                   </div>
                 )}
+                
                 <div 
                   className="break-words whitespace-pre-wrap"
                   dangerouslySetInnerHTML={{ __html: message.content }}
@@ -140,13 +155,15 @@ export default function Home() {
               </div>
             </div>
           )}
-        </div>
+        </div> : <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#161218] rounded-3xl">
+          
+          </div>}
 
         <div className="p-4 bg-black/50 rounded-b-xl">
           <div className="flex space-x-2">
             <input
               type="text"
-              placeholder="Ask your legal question..."
+              placeholder="Ask a question..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
@@ -155,7 +172,12 @@ export default function Home() {
             />
             <button 
               onClick={sendMessage}
-              className="bg-blue-800 text-white px-4 py-3 rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-50"
+              className="  transform 
+            bg-gradient-to-br from-purple-400 to-purple-600 
+            text-white px-2 py-1 rounded-md 
+            hover:from-purple-500 hover:to-purple-700 
+            transition-all duration-300 
+            shadow-md hover:shadow-lg h-[80%] my-auto"
               disabled={isLoading}
             >
               Send

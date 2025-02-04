@@ -3,6 +3,7 @@ import Info from "./info";
 // import Navbar from "./navbar";
 import Services from "./Services";
 import News from "./News";
+import Customers from "./customers";
 const Landing = () => {
   return (
     <>
@@ -10,6 +11,7 @@ const Landing = () => {
       <Info />
       <Services/>
       <News/>
+      <Customers />
     </>
   );
 };

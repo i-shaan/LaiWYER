@@ -34,7 +34,7 @@ const News = () => {
         {news.map((article, index) => (
           <div
             key={index}
-            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 rounded-lg shadow-lg overflow-hidden bg-black"
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 rounded-lg shadow-lg overflow-hidden bg-gradient-to-tl from-zinc-800 from to-stone-900"
           >
             <img
               src={article.urlToImage || "/placeholder.jpg"}

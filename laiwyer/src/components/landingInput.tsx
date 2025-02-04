@@ -1,9 +1,11 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation'; // Ensure this is from next/navigation
+import { useRouter } from 'next/navigation'; 
+
 
 const LandingInput = () => {
    const router = useRouter();
+   
    const placeholders = [
      'What is the statute of limitations?',
      'Define mens rea in criminal law',
