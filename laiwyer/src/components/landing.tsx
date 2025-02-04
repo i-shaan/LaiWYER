@@ -1,5 +1,5 @@
 import React from "react";
-import Info from "./info";
+// import Info from "./info";
 import Navbar from "./Navbar";
 import Services from "./Services/Services";
 import News from "./News";
