@@ -2,7 +2,9 @@ import React from "react";
 import Info from "./info";
 import Navbar from "./Navbar";
 import Services from "./Services/Services";
+import News from "./News";
 import LandingInput from "./landingInput";
+import Customers from "./customers";
 const Landing = () => {
   return (
     <>
@@ -10,7 +12,8 @@ const Landing = () => {
       {/* <Info /> */}
       <LandingInput/>
       <Services/>
-
+      <Customers/>
+      <News/>
     </>
   );
 };

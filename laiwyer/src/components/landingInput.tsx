@@ -2,12 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from './Navbar';
+
 import Image from 'next/image';
 import { Open } from "next/font/google";
 import "../styles/landing.css";
 
 const LandingInput = () => {
    const router = useRouter();
+   
    const placeholders = [
      'What is the statute of limitations?',
      'Define mens rea in criminal law',
