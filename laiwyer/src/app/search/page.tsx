@@ -29,6 +29,7 @@ export default function Home() {
       const formattedResponse = data.summary || "I couldn't process that request.";
       setTypingMessage(formattedResponse);
     } catch (error) {
+      console.log(error);
       setMessages(prev => [...prev, { type: 'bot', content: "Sorry, I encountered an error. Please try again." }]);
       setIsLoading(false);
     }
